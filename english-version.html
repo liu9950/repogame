@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPO Game - Dark Organ Repo Simulator</title>
+    <meta name="description" content="REPO game is a dark organ repossession simulator set in a dystopian 2089 where you play as a biotech debt collector">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="repogame-high-resolution-logo.png" type="image/png">
+    <link rel="shortcut icon" href="repogame-high-resolution-logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="repogame-high-resolution-logo.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2c3e50',
+                        accent: '#e74c3c',
+                        highlight: '#3498db',
+                        bgLight: '#f9f9f9',
+                        bgDark: '#1a1a1a',
+                        cardLight: '#ffffff',
+                        cardDark: '#2a2a2a',
+                    },
+                    boxShadow: {
+                        'custom': '0 4px 15px rgba(0, 0, 0, 0.1)',
+                        'hover': '0 10px 25px rgba(0, 0, 0, 0.15)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .gradient-overlap {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .gradient-overlap::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(231, 76, 60, 0.1) 25%, transparent 25%, transparent 50%, rgba(231, 76, 60, 0.1) 50%, rgba(231, 76, 60, 0.1) 75%, transparent 75%, transparent);
+                background-size: 20px 20px;
+                z-index: 1;
+                opacity: 0.1;
+                pointer-events: none;
+            }
+            
+            .glow-text {
+                text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+            }
+            
+            .gradient-ui {
+                background: linear-gradient(45deg, #2c3e50, #3498db);
+            }
+            
+            .gradient-gameplay {
+                background: linear-gradient(45deg, #2c3e50, #e74c3c);
+            }
+            
+            .gradient-cutscene {
+                background: linear-gradient(45deg, #2c3e50, #9b59b6);
+            }
+            
+            .gradient-separator {
+                height: 2px;
+                background: linear-gradient(to right, transparent, #e74c3c, transparent);
+            }
+
+            .feature-underline {
+                position: relative;
+            }
+            
+            .feature-underline::after {
+                content: "";
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: theme('colors.highlight');
+                transition: width 0.3s ease;
+            }
+            
+            .feature-underline:hover::after {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-bgLight text-gray-800 dark:bg-bgDark dark:text-gray-100 transition-colors duration-300">
+    <!-- Loading Bar -->
+    <div id="loading-bar" class="h-1 bg-accent fixed top-0 left-0 z-50"></div>
+    
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="fixed top-6 right-6 z-50 bg-primary dark:bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:rotate-12 transition-all duration-300">
+        <i class="fa-solid fa-moon dark:hidden"></i>
+        <i class="fa-solid fa-sun hidden dark:block"></i>
+    </button>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-50 bg-accent text-white w-10 h-10 rounded-full shadow-lg hidden hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    
+    <div class="container max-w-6xl mx-auto px-4 sm:px-6 py-6">
+        <!-- Header -->
+        <header class="bg-primary text-white py-10 px-6 rounded-xl mb-8 shadow-custom animate-fade-in">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-2 text-center">REPO Game Explained</h1>
+            <div class="text-xl text-gray-300 text-center">A Dark Organ Repo Simulator for Beginners</div>
+            
+            <!-- Upgraded Official Game Link Button - More Rounded Design -->
+            <div class="flex justify-center mt-5">
+                <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black
+                          text-gray-300 hover:text-white py-2.5 px-6 rounded-full border border-gray-700
+                          transition-all duration-500 ease-in-out text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg
+                          backdrop-blur-sm bg-opacity-90 hover:pl-5 hover:pr-7">
+                    <span class="absolute inset-0 bg-accent opacity-0 group-hover:opacity-5 transition-opacity duration-500"></span>
+                    <i class="fa-brands fa-steam mr-2.5 text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                    <span class="mr-1 tracking-wide font-medium">Official Game</span>
+                    <span class="flex items-center justify-center w-5 h-5 ml-1.5 rounded-full bg-black/30 group-hover:bg-accent/20 
+                                transition-all duration-500 ease-in-out transform group-hover:translate-x-1.5 group-hover:scale-110">
+                        <i class="fa-solid fa-arrow-right text-xs group-hover:text-white"></i>
+                    </span>
+                </a>
+            </div>
+        </header>
+        
+        <!-- TL;DR Overview -->
+        <div class="bg-accent text-white p-6 rounded-xl mb-8 shadow-custom gradient-overlap">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+                <i class="fa-solid fa-gamepad mr-2"></i>TL;DR
+            </h3>
+            <p class="text-base sm:text-lg"><em>REPO</em> is a <strong>"repo man simulator"</strong> set in a dystopian future where you play as a <strong>biotech debt collector</strong>, surgically repossessing artificial organs from delinquent clients. It blends <em>horror survival</em> with <em>moral choices</em>—think <em>"Cyberpunk 2077 meets Outlast."</em></p>
+        </div>
+        
+        <!-- Game Screenshots -->
+        <div class="bg-white dark:bg-cardDark rounded-xl p-6 mb-8 shadow-custom hover:shadow-hover transition-shadow duration-300">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-accent flex items-center">
+                <i class="fa-solid fa-image mr-2 text-accent"></i>Game Screenshots <span class="emoji-spin">📸</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- UI Screenshot - Replaced with YouTube Video -->
+                <div class="relative h-48 rounded-lg overflow-hidden shadow-lg">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pDS5t63ALLE" title="REPO Game Gameplay" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-3 text-center">
+                        <i class="fa-solid fa-desktop mr-1"></i> Game Trailer <span class="emoji-pulse">🖥️</span>
+                    </div>
+                </div>
+                
+                <!-- Gameplay Screenshot - Replaced with YouTube Video -->
+                <div class="relative h-48 rounded-lg overflow-hidden shadow-lg">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/T1gnAuCf0JI" title="REPO Game Surgical Scene" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-3 text-center">
+                        <i class="fa-solid fa-person-running mr-1"></i> Gameplay <span class="emoji-float">🎮</span>
+                    </div>
+                </div>
+                
+                <!-- Cutscene Screenshot - Replaced with YouTube Video -->
+                <div class="relative h-48 rounded-lg overflow-hidden shadow-lg">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/DJ0pCrkPkM0" title="REPO Game Cutscene" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-3 text-center">
+                        <i class="fa-solid fa-film mr-1"></i> Cutscene <span class="emoji-spin">🎬</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game World -->
+        <div class="bg-white dark:bg-cardDark rounded-xl p-6 mb-8 shadow-custom hover:shadow-hover transition-shadow duration-300">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-accent flex items-center">
+                <i class="fa-solid fa-globe mr-2 text-accent"></i>The World: Why Are We Repoing Organs? <span class="emoji-pulse">🌍</span>
+            </h2>
+            
+            <h3 class="text-xl font-semibold mb-3">The Setting:</h3>
+            <ul class="list-disc pl-6 mb-6 space-y-2">
+                <li class="text-base sm:text-lg"><strong>Year 2089</strong> <span class="emoji-float">🔮</span>: A corporate-ruled dystopia where the poor lease artificial organs.</li>
+                <li class="text-base sm:text-lg"><strong>Your Job</strong> <span class="emoji-pulse">💼</span>: Work for <strong>GeneCo</strong>, a megacorp that sends you to violently reclaim organs when payments stop.</li>
+            </ul>
+            
+            <div class="my-8 relative">
+                <!-- Official Steam Game Image with Enhanced Display -->
+                <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer" class="block relative">
+                    <div class="relative w-full overflow-hidden rounded-lg shadow-lg" style="padding-top: 42.8%;">
+                        <!-- Steam game image with optimized fallback chain -->
+                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/capsule_616x353.jpg" 
+                             alt="REPO Game World" 
+                             class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null; this.src='https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/header.jpg'; 
+                                      this.onerror=function(){this.src='https://cdn.akamai.steamstatic.com/steam/apps/3241660/header.jpg';
+                                      this.onerror=function(){this.src='https://source.unsplash.com/random/1200x600/?dystopia,cyberpunk,city'}}">
+                        
+                        <!-- Stylish overlay with gradient on hover -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <div class="w-full">
+                                <div class="text-white text-sm font-medium px-4 py-2 rounded-full bg-accent/80 backdrop-blur-sm inline-flex items-center float-right">
+                                    <i class="fa-brands fa-steam mr-2"></i> View Game on Steam
+                                </div>
+                                <div class="text-white text-lg font-semibold mb-1 drop-shadow-md">Official REPO Artwork</div>
+                                <div class="text-gray-200 text-sm drop-shadow-md">A glimpse into the dark dystopian world of GeneCo</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <h3 class="text-xl font-semibold mb-3">Newbie FAQs:</h3>
+            <div class="space-y-4">
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p class="font-bold text-accent flex items-center cursor-pointer question">
+                        <i class="fa-solid fa-circle-question mr-2"></i> "Is this legal?" <span class="emoji-float">⚖️</span>
+                    </p>
+                    <p class="answer mt-2 pl-6">→ <strong>In-game, yes.</strong> But you'll question your humanity. <span class="emoji-pulse">🤔</span></p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <p class="font-bold text-accent flex items-center cursor-pointer question">
+                        <i class="fa-solid fa-circle-question mr-2"></i> "What happens to victims?" <span class="emoji-float">😨</span>
+                    </p>
+                    <p class="answer mt-2 pl-6">→ They die or become disabled (graphic visuals).</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Core Gameplay -->
+        <div class="bg-white dark:bg-cardDark rounded-xl p-6 mb-8 shadow-custom hover:shadow-hover transition-shadow duration-300">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-accent flex items-center">
+                <i class="fa-solid fa-ghost mr-2 text-accent"></i>Core Gameplay: 3 Key Tasks
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Task 1 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg border-l-4 border-highlight hover:border-l-8 transition-all duration-200">
+                    <div class="font-bold text-highlight text-lg mb-3 flex items-center">
+                        <i class="fa-solid fa-magnifying-glass mr-2"></i>1. Case Prep
+                    </div>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Research targets (e.g., <em>"Does this debtor own weapons?"</em>)</li>
+                        <li class="text-accent italic mt-2"><i class="fa-solid fa-lightbulb"></i> <em>Pro Tip</em>: Bribe hackers for intel to avoid ambushes.</li>
+                    </ul>
+                </div>
+                
+                <!-- Task 2 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg border-l-4 border-highlight hover:border-l-8 transition-all duration-200">
+                    <div class="font-bold text-highlight text-lg mb-3 flex items-center">
+                        <i class="fa-solid fa-scalpel mr-2"></i>2. Surgical Repo
+                    </div>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Use tools (<em>tranq guns, bone saws</em>) to extract organs.</li>
+                        <li class="text-accent italic mt-2"><i class="fa-solid fa-triangle-exclamation"></i> <em>Warning</em>: Noise attracts police or hostile neighbors.</li>
+                    </ul>
+                </div>
+                
+                <!-- Task 3 -->
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg border-l-4 border-highlight hover:border-l-8 transition-all duration-200">
+                    <div class="font-bold text-highlight text-lg mb-3 flex items-center">
+                        <i class="fa-solid fa-scale-balanced mr-2"></i>3. Morality System
+                    </div>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Ruthless Path</strong>: Maximize profits, earn GeneCo promotions.</li>
+                        <li><strong>Redemption Path</strong>: Help debtors escape—but face corporate wrath.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <!-- REPO Game Image with Enhanced Display -->
+                <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer" class="block">
+                    <div class="relative w-full overflow-hidden rounded-lg shadow-lg" style="padding-top: 42.8%;">
+                        <!-- New REPO Game image with fallback options -->
+                        <img src="r-e-p-o-file-207303896c.jpg.webp" 
+                             alt="REPO Game Official Image" 
+                             class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null; this.src='https://cdn.cloudflare.steamstatic.com/steam/apps/3241660/header.jpg'; 
+                                      this.onerror=function(){this.src='https://cdn.akamai.steamstatic.com/steam/apps/3241660/header.jpg';
+                                      this.onerror=function(){this.src='https://source.unsplash.com/random/1200x600/?cyberpunk,surgery'}}">
+                                      
+                        <!-- Elegant overlay on hover -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                            <span class="text-white font-medium px-4 py-2 rounded-full bg-accent/80 backdrop-blur-sm flex items-center">
+                                <i class="fa-brands fa-steam mr-2"></i> View on Steam
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-1 text-right">
+                        <i class="fa-solid fa-image"></i> REPO Game Illustration
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Unique Features -->
+        <div class="bg-white dark:bg-cardDark rounded-xl p-6 mb-8 shadow-custom hover:shadow-hover transition-shadow duration-300">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-accent flex items-center">
+                <i class="fa-solid fa-triangle-exclamation mr-2 text-accent"></i>3 Unique Features You Should Know
+            </h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th class="p-3 text-left">Feature</th>
+                            <th class="p-3 text-left">Description</th>
+                            <th class="p-3 text-left">Similar Games</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <td class="p-3 font-bold text-highlight feature-underline">
+                                <i class="fa-solid fa-heartbeat mr-1"></i> Real-Time Stress
+                            </td>
+                            <td class="p-3">Your heartbeat affects aiming during surgeries</td>
+                            <td class="p-3"><em>Outlast</em> panic system</td>
+                        </tr>
+                        <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <td class="p-3 font-bold text-highlight feature-underline">
+                                <i class="fa-solid fa-biohazard mr-1"></i> Organ Decay
+                            </td>
+                            <td class="p-3">Harvested organs rot if not delivered quickly</td>
+                            <td class="p-3"><em>Resident Evil</em> inventory</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <td class="p-3 font-bold text-highlight feature-underline">
+                                <i class="fa-solid fa-code-branch mr-1"></i> Branching Endings
+                            </td>
+                            <td class="p-3">Choices trigger riots, corporate collapses, etc.</td>
+                            <td class="p-3"><em>Detroit: Become Human</em></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Target Audience -->
+        <div class="bg-white dark:bg-cardDark rounded-xl p-6 mb-8 shadow-custom hover:shadow-hover transition-shadow duration-300">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-accent flex items-center">
+                <i class="fa-solid fa-bullseye mr-2 text-accent"></i>Who's This Game For?
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border-l-4 border-green-500">
+                    <p class="flex items-start">
+                        <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Fans of <strong>moral dilemmas</strong> (<em>This War of Mine</em>)</span>
+                    </p>
+                </div>
+                <div class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border-l-4 border-green-500">
+                    <p class="flex items-start">
+                        <i class="fa-solid fa-check text-green-500 mt-1 mr-2"></i>
+                        <span>Lovers of <strong>stealth + resource management</strong> (<em>Metal Gear</em> + <em>BioShock</em>)</span>
+                    </p>
+                </div>
+                <div class="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500">
+                    <p class="flex items-start">
+                        <i class="fa-solid fa-xmark text-red-500 mt-1 mr-2"></i>
+                        <span>Avoid if: You dislike gore or oppressive atmospheres.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Starter Tips -->
+        <div class="bg-white dark:bg-cardDark rounded-xl p-6 mb-8 shadow-custom hover:shadow-hover transition-shadow duration-300">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-accent flex items-center">
+                <i class="fa-solid fa-rocket mr-2 text-accent"></i>Starter Tips
+            </h2>
+            
+            <ul class="space-y-4">
+                <li class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex">
+                    <i class="fa-solid fa-rocket text-highlight mt-1 mr-3"></i>
+                    <span><strong>Avoid "High-Risk" contracts early</strong> (some debtors fight back).</span>
+                </li>
+                <li class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex">
+                    <i class="fa-solid fa-rocket text-highlight mt-1 mr-3"></i>
+                    <span><strong>Upgrade anesthesia first</strong> (reduces blood loss and noise).</span>
+                </li>
+                <li class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex">
+                    <i class="fa-solid fa-rocket text-highlight mt-1 mr-3"></i>
+                    <span><strong>Talk to homeless NPCs</strong> (they reveal hidden loot locations).</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- The Verdict -->
+        <div class="text-xl italic text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg my-8 border-l-4 border-r-4 border-accent glow-text">
+            "A brutal simulator that makes you complicit in corporate horror—with gameplay that'll haunt you after quitting."
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap justify-center gap-4 my-10">
+            <a href="#" class="bg-accent hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center">
+                <i class="fa-solid fa-circle-info mr-2"></i>View More Game Details
+            </a>
+            <a href="#" class="bg-primary hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center">
+                <i class="fa-solid fa-book mr-2"></i>View Game Guide
+            </a>
+        </div>
+        
+        <div class="gradient-separator my-10"></div>
+        
+        <!-- Official Links Section -->
+        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 mb-8 text-center">
+            <h2 class="text-xl font-bold mb-4 flex items-center justify-center">
+                <i class="fa-solid fa-link mr-2 text-accent"></i>Official Resources
+            </h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-4">
+                <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-brands fa-steam mr-2"></i>
+                    <span>Steam Page</span>
+                </a>
+                
+                <a href="https://www.dlcompare.co.uk/games/100034693/buy-r-e-p-o-steam-key" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-solid fa-tags mr-2"></i>
+                    <span>Price Comparison</span>
+                </a>
+                
+                <a href="https://steamcommunity.com/app/3241660/discussions/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-solid fa-comments mr-2"></i>
+                    <span>Community Forum</span>
+                </a>
+            </div>
+            
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-4">Find more about REPO and connect with other players</p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center text-gray-600 dark:text-gray-400 mt-10">
+            <p>© <span id="current-year">2023</span> REPO Game Recommendations | This website is for game recommendations only, does not contain actual game downloads</p>
+            <p class="text-sm mt-2">Built with Tailwind CSS</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Loading animation
+        const loadingBar = document.getElementById('loading-bar');
+        loadingBar.style.width = '0';
+        setTimeout(() => {
+            loadingBar.style.width = '100%';
+            loadingBar.style.transition = 'width 0.8s ease-in-out';
+        }, 100);
+        
+        // Check user's previous theme preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('hidden');
+                backToTop.classList.add('flex');
+            } else {
+                backToTop.classList.add('hidden');
+                backToTop.classList.remove('flex');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // FAQ collapsible elements
+        const questions = document.querySelectorAll('.question');
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    answer.style.opacity = '0';
+                    setTimeout(() => {
+                        answer.style.display = 'none';
+                    }, 300);
+                } else {
+                    answer.style.display = 'block';
+                    setTimeout(() => {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        answer.style.opacity = '1';
+                    }, 10);
+                }
+            });
+        });
+        
+        // Table row hover effects
+        const tableRows = document.querySelectorAll('tbody tr');
+        tableRows.forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.classList.add('bg-gray-50', 'dark:bg-gray-800');
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.classList.remove('bg-gray-50', 'dark:bg-gray-800');
+            });
+        });
+    </script>
+</body>
+</html> 

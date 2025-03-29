@@ -1,0 +1,242 @@
+/* 额外的动画和交互效果 */
+.section:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.task:hover {
+    border-left-width: 8px;
+    transition: border-left-width 0.2s ease;
+}
+
+/* 按钮样式 */
+.cta-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+}
+
+.cta-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* 头部动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+    animation: fadeIn 1s ease-out;
+}
+
+.tldr {
+    position: relative;
+    overflow: hidden;
+}
+
+.tldr:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(231, 76, 60, 0.1) 25%, transparent 25%, transparent 50%, rgba(231, 76, 60, 0.1) 50%, rgba(231, 76, 60, 0.1) 75%, transparent 75%, transparent);
+    background-size: 20px 20px;
+    z-index: 1;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+/* 游戏特性动画 */
+.feature-cell {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.feature-cell:after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--highlight-color);
+    transition: width 0.3s ease;
+}
+
+.feature-cell:hover:after {
+    width: 100%;
+}
+
+/* 提示标签 */
+.tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--highlight-color);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+/* 响应式图像容器 */
+.img-container {
+    max-width: 100%;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.img-container:hover img {
+    transform: scale(1.02);
+}
+
+/* 图标动画 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.icon-pulse {
+    animation: pulse 2s infinite;
+    display: inline-block;
+}
+
+/* 夜间模式切换 */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(30deg);
+}
+
+/* 滚动条自定义 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* 底部返回顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+/* 加载动画 */
+@keyframes loadingBar {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+.loading-bar {
+    height: 4px;
+    width: 0;
+    background-color: var(--accent-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    animation: loadingBar 1s ease-in-out forwards;
+}
+
+/* 黑暗模式 */
+.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --card-bg: #2a2a2a;
+    --primary-color: #375a7f;
+    --accent-color: #e74c3c;
+    --secondary-color: #aaa;
+}
+
+.dark-mode .section {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode th {
+    background-color: #2c3e50;
+}
+
+.dark-mode th, .dark-mode td {
+    border: 1px solid #444;
+}
+
+/* 特效元素 */
+.glow-text {
+    text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+} 
