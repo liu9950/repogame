@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YH2CGWKE5X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YH2CGWKE5X');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPO Game - 黑暗器官回收模拟器 | 官方REPO游戏指南</title>
+    <meta name="description" content="REPO Game是一款黑暗器官回收模拟器，设定在2089年的反乌托邦未来，玩家扮演生物技术债务催收员，了解REPO游戏的特点和玩法。">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.repogame.cloud/i18n/zh-cn/index.html">
+    <link rel="alternate" hreflang="en" href="https://www.repogame.cloud/">
+    <link rel="alternate" hreflang="zh-CN" href="https://www.repogame.cloud/i18n/zh-cn/index.html">
+    <link rel="alternate" hreflang="ja" href="https://www.repogame.cloud/i18n/ja/index.html">
+    <link rel="alternate" hreflang="es" href="https://www.repogame.cloud/i18n/es/index.html">
+    <link rel="alternate" hreflang="fr" href="https://www.repogame.cloud/i18n/fr/index.html">
+    <link rel="alternate" hreflang="ru" href="https://www.repogame.cloud/i18n/ru/index.html">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="REPO Game - 黑暗器官回收模拟器 | 官方REPO游戏指南">
+    <meta property="og:description" content="REPO Game是一款黑暗器官回收模拟器，设定在2089年的反乌托邦未来，玩家扮演生物技术债务催收员。">
+    <meta property="og:url" content="https://www.repogame.cloud/i18n/zh-cn/index.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../../repogame-high-resolution-logo.png" type="image/png">
+    <link rel="shortcut icon" href="../../repogame-high-resolution-logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../repogame-high-resolution-logo.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2c3e50',
+                        accent: '#e74c3c',
+                        highlight: '#3498db',
+                        bgLight: '#f9f9f9',
+                        bgDark: '#1a1a1a',
+                        cardLight: '#ffffff',
+                        cardDark: '#2a2a2a',
+                    },
+                    boxShadow: {
+                        'custom': '0 4px 15px rgba(0, 0, 0, 0.1)',
+                        'hover': '0 10px 25px rgba(0, 0, 0, 0.15)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-bgLight text-gray-800 dark:bg-bgDark dark:text-gray-100 transition-colors duration-300">
+    <!-- Loading Bar -->
+    <div id="loading-bar" class="h-1 bg-accent fixed top-0 left-0 z-50"></div>
+    
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="fixed top-6 right-6 z-50 bg-primary dark:bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:rotate-12 transition-all duration-300">
+        <i class="fa-solid fa-moon dark:hidden"></i>
+        <i class="fa-solid fa-sun hidden dark:block"></i>
+    </button>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-50 bg-accent text-white w-10 h-10 rounded-full shadow-lg hidden hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    
+    <!-- Navigation Bar -->
+    <nav class="bg-gradient-to-r from-primary to-gray-800 text-white shadow-xl sticky top-0 z-40 backdrop-filter backdrop-blur-sm bg-opacity-95">
+        <div class="container max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <!-- Logo/Brand -->
+                <div class="flex items-center py-4">
+                    <a href="index.html" class="font-bold text-lg flex items-center group">
+                        <div class="relative overflow-hidden h-9 w-9 rounded-full mr-2 border border-gray-700 shadow-inner flex items-center justify-center bg-black/30">
+                            <img src="../../repogame-high-resolution-logo.png" alt="REPO Logo" class="h-7 w-7 object-contain group-hover:scale-110 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-accent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                        </div>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 group-hover:from-white group-hover:to-accent transition-all duration-300">REPO</span>
+                    </a>
+                </div>
+                
+                <!-- Primary Menu Items - Hidden on Mobile -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="index.html" class="px-4 py-4 text-accent border-b-2 border-accent transition duration-300">首页</a>
+                    <a href="guides/index.html" class="px-4 py-4 hover:text-accent transition duration-300">游戏指南</a>
+                    <a href="features/index.html" class="px-4 py-4 hover:text-accent transition duration-300">游戏特色</a>
+                    <a href="community/index.html" class="px-4 py-4 hover:text-accent transition duration-300">社区</a>
+                    <a href="downloads/index.html" class="px-4 py-4 hover:text-accent transition duration-300">下载</a>
+                </div>
+                
+                <!-- Language Selector -->
+                <div class="hidden md:flex items-center">
+                    <div class="relative group">
+                        <button class="px-4 py-4 hover:text-accent transition duration-300 flex items-center">
+                            <i class="fa-solid fa-globe mr-2"></i>
+                            <span>中文</span>
+                            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="absolute right-0 mt-0 w-40 bg-gray-900/95 backdrop-blur-md rounded-lg shadow-xl overflow-hidden transform scale-0 group-hover:scale-100 origin-top transition-transform duration-300 z-50 border border-gray-700">
+                            <a href="../../index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇺🇸</span>
+                                <span class="ml-2">English</span>
+                            </a>
+                            <a href="index.html" class="block px-4 py-2 bg-accent/20 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇨🇳</span>
+                                <span class="ml-2">中文</span>
+                            </a>
+                            <a href="../ja/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇯🇵</span>
+                                <span class="ml-2">日本語</span>
+                            </a>
+                            <a href="../es/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇪🇸</span>
+                                <span class="ml-2">Español</span>
+                            </a>
+                            <a href="../fr/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇫🇷</span>
+                                <span class="ml-2">Français</span>
+                            </a>
+                            <a href="../ru/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇷🇺</span>
+                                <span class="ml-2">Русский</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="mobile-menu-button p-2 focus:outline-none bg-black/20 rounded-md hover:bg-black/30 transition-colors duration-300">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden px-4 pb-4 border-t border-gray-700 mt-1 bg-gradient-to-b from-gray-800/70 to-gray-900/70 backdrop-blur-md">
+            <a href="index.html" class="block px-4 py-3 bg-accent/20 rounded-md transition-colors duration-300 my-1">首页</a>
+            <a href="guides/index.html" class="block px-4 py-3 hover:bg-black/20 rounded-md transition-colors duration-300 my-1">游戏指南</a>
+            <a href="features/index.html" class="block px-4 py-3 hover:bg-black/20 rounded-md transition-colors duration-300 my-1">游戏特色</a>
+            <a href="community/index.html" class="block px-4 py-3 hover:bg-black/20 rounded-md transition-colors duration-300 my-1">社区</a>
+            <a href="downloads/index.html" class="block px-4 py-3 hover:bg-black/20 rounded-md transition-colors duration-300 my-1">下载</a>
+            
+            <!-- Mobile Language Selector -->
+            <div class="mt-3 pt-3 border-t border-gray-700">
+                <p class="text-gray-400 px-4 py-2 text-sm">选择语言</p>
+                <div class="grid grid-cols-2 gap-1 mt-1">
+                    <a href="../../index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇺🇸</span>
+                        <span class="ml-2">English</span>
+                    </a>
+                    <a href="index.html" class="px-4 py-2 bg-accent/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇨🇳</span>
+                        <span class="ml-2">中文</span>
+                    </a>
+                    <a href="../ja/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇯🇵</span>
+                        <span class="ml-2">日本語</span>
+                    </a>
+                    <a href="../es/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇪🇸</span>
+                        <span class="ml-2">Español</span>
+                    </a>
+                    <a href="../fr/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇫🇷</span>
+                        <span class="ml-2">Français</span>
+                    </a>
+                    <a href="../ru/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇷🇺</span>
+                        <span class="ml-2">Русский</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container max-w-6xl mx-auto px-4 sm:px-6 py-6">
+        <!-- Header -->
+        <header class="bg-primary text-white py-10 px-6 rounded-xl mb-8 shadow-custom animate-fade-in">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-2 text-center">REPO游戏详解</h1>
+            <div class="text-xl text-gray-300 text-center">黑暗器官回收模拟器新手指南</div>
+            
+            <!-- Official Game Link Button -->
+            <div class="flex justify-center mt-5">
+                <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black
+                          text-gray-300 hover:text-white py-2.5 px-6 rounded-full border border-gray-700
+                          transition-all duration-500 ease-in-out text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg
+                          backdrop-blur-sm bg-opacity-90 hover:pl-5 hover:pr-7">
+                    <span class="absolute inset-0 bg-accent opacity-0 group-hover:opacity-5 transition-opacity duration-500"></span>
+                    <i class="fa-brands fa-steam mr-2.5 text-gray-300 group-hover:text-white transition-colors duration-300"></i>
+                    <span class="mr-1 tracking-wide font-medium">官方游戏</span>
+                    <span class="flex items-center justify-center w-5 h-5 ml-1.5 rounded-full bg-black/30 group-hover:bg-accent/20 
+                                transition-all duration-500 ease-in-out transform group-hover:translate-x-1.5 group-hover:scale-110">
+                        <i class="fa-solid fa-arrow-right text-xs group-hover:text-white"></i>
+                    </span>
+                </a>
+            </div>
+        </header>
+        
+        <!-- TL;DR Overview -->
+        <div class="bg-accent text-white p-6 rounded-xl mb-8 shadow-custom gradient-overlap">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+                <i class="fa-solid fa-gamepad mr-2"></i>REPO游戏概述
+            </h3>
+            <p class="text-base sm:text-lg"><em>REPO游戏</em>是一款<strong>"回收人模拟器"</strong>，背景设定在反乌托邦未来，玩家扮演<strong>生物技术债务催收员</strong>，通过手术方式回收违约客户的人工器官。REPO游戏融合了<em>恐怖生存</em>与<em>道德选择</em>元素——想象<em>"赛博朋克2077遇上逃生"</em>。</p>
+        </div>
+        
+        <!-- Abbreviated content would follow... -->
+        
+        <!-- Official Links Section -->
+        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 mb-8 text-center">
+            <h2 class="text-xl font-bold mb-4 flex items-center justify-center">
+                <i class="fa-solid fa-link mr-2 text-accent"></i>REPO游戏官方资源
+            </h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-4">
+                <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-brands fa-steam mr-2"></i>
+                    <span>Steam页面</span>
+                </a>
+                
+                <a href="https://www.dlcompare.co.uk/games/100034693/buy-r-e-p-o-steam-key" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-solid fa-tags mr-2"></i>
+                    <span>价格比较</span>
+                </a>
+                
+                <a href="https://steamcommunity.com/app/3241660/discussions/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-solid fa-comments mr-2"></i>
+                    <span>社区论坛</span>
+                </a>
+            </div>
+            
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-4">了解更多REPO游戏信息并与其他玩家交流</p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center text-gray-600 dark:text-gray-400 mt-10">
+            <p>© <span id="current-year">2023</span> REPO游戏推荐 | 最全面的REPO游戏指南与建议</p>
+            <p class="text-sm mt-2">官方网站: <a href="https://www.repogame.cloud" class="text-accent hover:underline">www.repogame.cloud</a></p>
+            <p class="text-xs mt-1">采用Tailwind CSS构建</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Loading animation
+        const loadingBar = document.getElementById('loading-bar');
+        loadingBar.style.width = '0';
+        setTimeout(() => {
+            loadingBar.style.width = '100%';
+            loadingBar.style.transition = 'width 0.8s ease-in-out';
+        }, 100);
+        
+        // Check user's previous theme preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('hidden');
+                backToTop.classList.add('flex');
+            } else {
+                backToTop.classList.add('hidden');
+                backToTop.classList.remove('flex');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // Change icon
+                const icon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

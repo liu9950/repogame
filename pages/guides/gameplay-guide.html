@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YH2CGWKE5X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YH2CGWKE5X');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPO Game Gameplay Guide | Detailed Walkthrough & Tips</title>
+    <meta name="description" content="Complete REPO Game gameplay guide with walkthrough, tips and strategies for surgical repossessions, stealth, and survival in this dark dystopian simulator.">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.repogame.cloud/pages/guides/gameplay-guide.html">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="REPO Game Gameplay Guide | Detailed Walkthrough & Tips">
+    <meta property="og:description" content="Complete REPO Game gameplay guide with walkthrough, tips and strategies for surgical repossessions, stealth, and survival.">
+    <meta property="og:url" content="https://www.repogame.cloud/pages/guides/gameplay-guide.html">
+    <meta property="og:type" content="article">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../../repogame-high-resolution-logo.png" type="image/png">
+    <link rel="shortcut icon" href="../../repogame-high-resolution-logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="../../repogame-high-resolution-logo.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2c3e50',
+                        accent: '#e74c3c',
+                        highlight: '#3498db',
+                        bgLight: '#f9f9f9',
+                        bgDark: '#1a1a1a',
+                        cardLight: '#ffffff',
+                        cardDark: '#2a2a2a',
+                    },
+                    boxShadow: {
+                        'custom': '0 4px 15px rgba(0, 0, 0, 0.1)',
+                        'hover': '0 10px 25px rgba(0, 0, 0, 0.15)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-bgLight text-gray-800 dark:bg-bgDark dark:text-gray-100 transition-colors duration-300">
+    <!-- Loading Bar -->
+    <div id="loading-bar" class="h-1 bg-accent fixed top-0 left-0 z-50"></div>
+    
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="fixed top-6 right-6 z-50 bg-primary dark:bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:rotate-12 transition-all duration-300">
+        <i class="fa-solid fa-moon dark:hidden"></i>
+        <i class="fa-solid fa-sun hidden dark:block"></i>
+    </button>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-50 bg-accent text-white w-10 h-10 rounded-full shadow-lg hidden hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    
+    <!-- Navigation Bar -->
+    <nav class="bg-gradient-to-r from-primary to-gray-800 text-white shadow-xl sticky top-0 z-40 backdrop-filter backdrop-blur-sm bg-opacity-95">
+        <div class="container max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <!-- Logo/Brand -->
+                <div class="flex items-center py-4">
+                    <a href="../../index.html" class="font-bold text-lg flex items-center group">
+                        <div class="relative overflow-hidden h-9 w-9 rounded-full mr-2 border border-gray-700 shadow-inner flex items-center justify-center bg-black/30">
+                            <img src="../../repogame-high-resolution-logo.png" alt="REPO Logo" class="h-7 w-7 object-contain group-hover:scale-110 transition-transform duration-300" />
+                            <div class="absolute inset-0 bg-accent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                        </div>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 group-hover:from-white group-hover:to-accent transition-all duration-300">REPO</span>
+                    </a>
+                </div>
+                
+                <!-- Primary Menu Items - Hidden on Mobile -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="../../index.html" class="px-4 py-4 hover:text-accent transition duration-300">Home</a>
+                    <a href="../guides/index.html" class="px-4 py-4 text-accent border-b-2 border-accent transition duration-300">Guides</a>
+                    <a href="../features/index.html" class="px-4 py-4 hover:text-accent transition duration-300">Features</a>
+                    <a href="../community/index.html" class="px-4 py-4 hover:text-accent transition duration-300">Community</a>
+                    <a href="../downloads/index.html" class="px-4 py-4 hover:text-accent transition duration-300">Downloads</a>
+                </div>
+                
+                <!-- Language Selector -->
+                <div class="hidden md:flex items-center">
+                    <div class="relative group">
+                        <button class="px-4 py-4 hover:text-accent transition duration-300 flex items-center">
+                            <i class="fa-solid fa-globe mr-2"></i>
+                            <span>EN</span>
+                            <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="absolute right-0 mt-0 w-40 bg-gray-900/95 backdrop-blur-md rounded-lg shadow-xl overflow-hidden transform scale-0 group-hover:scale-100 origin-top transition-transform duration-300 z-50 border border-gray-700">
+                            <a href="../../index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇺🇸</span>
+                                <span class="ml-2">English</span>
+                            </a>
+                            <a href="../../i18n/zh-cn/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇨🇳</span>
+                                <span class="ml-2">中文</span>
+                            </a>
+                            <a href="../../i18n/ja/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇯🇵</span>
+                                <span class="ml-2">日本語</span>
+                            </a>
+                            <a href="../../i18n/es/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇪🇸</span>
+                                <span class="ml-2">Español</span>
+                            </a>
+                            <a href="../../i18n/fr/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇫🇷</span>
+                                <span class="ml-2">Français</span>
+                            </a>
+                            <a href="../../i18n/ru/index.html" class="block px-4 py-2 hover:bg-accent/10 transition duration-300 flex items-center">
+                                <span class="w-5 inline-block">🇷🇺</span>
+                                <span class="ml-2">Русский</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="mobile-menu-button p-2 focus:outline-none bg-black/20 rounded-md hover:bg-black/30 transition-colors duration-300">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden px-4 pb-4 border-t border-gray-700 mt-1 bg-gradient-to-b from-gray-800/70 to-gray-900/70 backdrop-blur-md">
+            <a href="../../index.html" class="block px-4 py-3 hover:bg-black/20 rounded-md transition-colors duration-300 my-1">Home</a>
+            <a href="../guides/index.html" class="block px-4 py-3 bg-accent/20 rounded-md transition-colors duration-300 my-1">Guides</a>
+            <a href="../features/index.html" class="block px-4 py-3 hover:bg-black/20 rounded-md transition-colors duration-300 my-1">Features</a>
+            <a href="../community/index.html" class="block px-4 py-3 hover:bg-black/20 rounded-md transition-colors duration-300 my-1">Community</a>
+            <a href="../downloads/index.html" class="block px-4 py-3 hover:bg-black/20 rounded-md transition-colors duration-300 my-1">Downloads</a>
+            
+            <!-- Mobile Language Selector -->
+            <div class="mt-3 pt-3 border-t border-gray-700">
+                <p class="text-gray-400 px-4 py-2 text-sm">Select Language</p>
+                <div class="grid grid-cols-2 gap-1 mt-1">
+                    <a href="../../index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇺🇸</span>
+                        <span class="ml-2">English</span>
+                    </a>
+                    <a href="../../i18n/zh-cn/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇨🇳</span>
+                        <span class="ml-2">中文</span>
+                    </a>
+                    <a href="../../i18n/ja/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇯🇵</span>
+                        <span class="ml-2">日本語</span>
+                    </a>
+                    <a href="../../i18n/es/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇪🇸</span>
+                        <span class="ml-2">Español</span>
+                    </a>
+                    <a href="../../i18n/fr/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇫🇷</span>
+                        <span class="ml-2">Français</span>
+                    </a>
+                    <a href="../../i18n/ru/index.html" class="px-4 py-2 hover:bg-black/20 rounded-md transition-colors duration-300 flex items-center">
+                        <span class="w-5 inline-block">🇷🇺</span>
+                        <span class="ml-2">Русский</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container max-w-6xl mx-auto px-4 sm:px-6 py-6">
+        <!-- Breadcrumb -->
+        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6">
+            <a href="../../index.html" class="hover:text-accent transition-colors duration-300">Home</a>
+            <i class="fa-solid fa-chevron-right mx-2 text-xs"></i>
+            <a href="../guides/index.html" class="hover:text-accent transition-colors duration-300">Guides</a>
+            <i class="fa-solid fa-chevron-right mx-2 text-xs"></i>
+            <span class="text-gray-600 dark:text-gray-300">Gameplay Guide</span>
+        </div>
+        
+        <!-- Page Header -->
+        <header class="bg-primary text-white py-10 px-6 rounded-xl mb-8 shadow-custom animate-fade-in">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-2 text-center">REPO Game Gameplay Guide</h1>
+            <div class="text-xl text-gray-300 text-center">Master the art of organ repossession</div>
+        </header>
+        
+        <!-- Table of Contents -->
+        <div class="bg-white dark:bg-cardDark rounded-xl p-6 mb-8 shadow-custom hover:shadow-hover transition-shadow duration-300">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-accent flex items-center">
+                <i class="fa-solid fa-list mr-2 text-accent"></i>Table of Contents
+            </h2>
+            
+            <ul class="space-y-2">
+                <li>
+                    <a href="#basics" class="flex items-center hover:text-accent transition-colors duration-300">
+                        <i class="fa-solid fa-circle-dot mr-2 text-xs text-accent"></i>
+                        Gameplay Basics
+                    </a>
+                </li>
+                <li>
+                    <a href="#controls" class="flex items-center hover:text-accent transition-colors duration-300">
+                        <i class="fa-solid fa-circle-dot mr-2 text-xs text-accent"></i>
+                        Controls & Interface
+                    </a>
+                </li>
+                <li>
+                    <a href="#surgical" class="flex items-center hover:text-accent transition-colors duration-300">
+                        <i class="fa-solid fa-circle-dot mr-2 text-xs text-accent"></i>
+                        Surgical Techniques
+                    </a>
+                </li>
+                <li>
+                    <a href="#stealth" class="flex items-center hover:text-accent transition-colors duration-300">
+                        <i class="fa-solid fa-circle-dot mr-2 text-xs text-accent"></i>
+                        Stealth & Infiltration
+                    </a>
+                </li>
+                <li>
+                    <a href="#progression" class="flex items-center hover:text-accent transition-colors duration-300">
+                        <i class="fa-solid fa-circle-dot mr-2 text-xs text-accent"></i>
+                        Career Progression
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Gameplay Basics Section -->
+        <div id="basics" class="bg-white dark:bg-cardDark rounded-xl p-6 mb-8 shadow-custom hover:shadow-hover transition-shadow duration-300">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b-2 border-accent flex items-center">
+                <i class="fa-solid fa-gamepad mr-2 text-accent"></i>Gameplay Basics
+            </h2>
+            
+            <p class="mb-4">In REPO Game, you play as a surgical repo agent working for GeneCo. Your job is to locate debtors who have fallen behind on payments for their artificial organs and repossess these organs - by any means necessary.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg">
+                    <h3 class="font-bold text-lg mb-3 flex items-center">
+                        <i class="fa-solid fa-bullseye mr-2 text-accent"></i>Core Objectives
+                    </h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Identify and locate the target debtor</li>
+                        <li>Infiltrate their residence or workplace</li>
+                        <li>Subdue or neutralize the target</li>
+                        <li>Successfully extract the organ(s)</li>
+                        <li>Escape without being caught</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg">
+                    <h3 class="font-bold text-lg mb-3 flex items-center">
+                        <i class="fa-solid fa-scale-balanced mr-2 text-accent"></i>Moral System
+                    </h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Each target mission offers moral choices</li>
+                        <li>Ruthless approach: maximize profit, faster promotions</li>
+                        <li>Compassionate approach: seek alternatives for debtors</li>
+                        <li>Choices affect your reputation, equipment access, and story endings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- More content sections would follow... -->
+        
+        <!-- Back to Guides Button -->
+        <div class="flex justify-center mt-10 mb-5">
+            <a href="../guides/index.html" class="bg-primary hover:bg-blue-800 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:-translate-y-1 transition-all duration-300 flex items-center">
+                <i class="fa-solid fa-chevron-left mr-2"></i>
+                Back to All Guides
+            </a>
+        </div>
+        
+        <!-- Official Links Section -->
+        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 mb-8 text-center">
+            <h2 class="text-xl font-bold mb-4 flex items-center justify-center">
+                <i class="fa-solid fa-link mr-2 text-accent"></i>Official REPO Game Resources
+            </h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-4">
+                <a href="https://store.steampowered.com/app/3241660/REPO/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-brands fa-steam mr-2"></i>
+                    <span>Steam Page</span>
+                </a>
+                
+                <a href="https://www.dlcompare.co.uk/games/100034693/buy-r-e-p-o-steam-key" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-solid fa-tags mr-2"></i>
+                    <span>Price Comparison</span>
+                </a>
+                
+                <a href="https://steamcommunity.com/app/3241660/discussions/" target="_blank" rel="noopener noreferrer" 
+                   class="group relative overflow-hidden bg-gradient-to-r from-primary to-gray-700 hover:from-accent hover:to-red-700
+                          text-white py-2 px-4 rounded-full border border-gray-600
+                          transition-all duration-300 text-sm flex items-center shadow-md hover:shadow-accent/20 hover:shadow-lg">
+                    <i class="fa-solid fa-comments mr-2"></i>
+                    <span>Community Forum</span>
+                </a>
+            </div>
+            
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-4">Find more about REPO Game and connect with other players</p>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center text-gray-600 dark:text-gray-400 mt-10">
+            <p>© <span id="current-year">2023</span> REPO Game Recommendations | The ultimate REPO Game guide with recommendations and tips</p>
+            <p class="text-sm mt-2">Official website: <a href="https://www.repogame.cloud" class="text-accent hover:underline">www.repogame.cloud</a></p>
+            <p class="text-xs mt-1">Built with Tailwind CSS</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Loading animation
+        const loadingBar = document.getElementById('loading-bar');
+        loadingBar.style.width = '0';
+        setTimeout(() => {
+            loadingBar.style.width = '100%';
+            loadingBar.style.transition = 'width 0.8s ease-in-out';
+        }, 100);
+        
+        // Check user's previous theme preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('hidden');
+                backToTop.classList.add('flex');
+            } else {
+                backToTop.classList.add('hidden');
+                backToTop.classList.remove('flex');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // Change icon
+                const icon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+        }
+    </script>
+</body>
+</html> 

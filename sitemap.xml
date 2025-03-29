@@ -1,15 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- 主页 -->
   <url>
     <loc>https://www.repogame.cloud/</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.repogame.cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.repogame.cloud/i18n/zh-cn/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.repogame.cloud/i18n/ja/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.repogame.cloud/i18n/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.repogame.cloud/i18n/fr/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.repogame.cloud/i18n/ru/index.html"/>
   </url>
+  
+  <!-- 站内页 - 游戏玩法指南 -->
   <url>
-    <loc>https://www.repogame.cloud/index.html</loc>
+    <loc>https://www.repogame.cloud/pages/guides/gameplay-guide.html</loc>
+    <lastmod>2023-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 中文主页 -->
+  <url>
+    <loc>https://www.repogame.cloud/i18n/zh-cn/index.html</loc>
     <lastmod>2023-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.repogame.cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.repogame.cloud/i18n/zh-cn/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.repogame.cloud/i18n/ja/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.repogame.cloud/i18n/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.repogame.cloud/i18n/fr/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.repogame.cloud/i18n/ru/index.html"/>
+  </url>
+  
+  <!-- 其他多语言页面占位符 -->
+  <url>
+    <loc>https://www.repogame.cloud/i18n/ja/index.html</loc>
+    <lastmod>2023-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.repogame.cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.repogame.cloud/i18n/zh-cn/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.repogame.cloud/i18n/ja/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.repogame.cloud/i18n/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.repogame.cloud/i18n/fr/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.repogame.cloud/i18n/ru/index.html"/>
+  </url>
+  
+  <url>
+    <loc>https://www.repogame.cloud/i18n/es/index.html</loc>
+    <lastmod>2023-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.repogame.cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.repogame.cloud/i18n/zh-cn/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.repogame.cloud/i18n/ja/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.repogame.cloud/i18n/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.repogame.cloud/i18n/fr/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.repogame.cloud/i18n/ru/index.html"/>
+  </url>
+  
+  <url>
+    <loc>https://www.repogame.cloud/i18n/fr/index.html</loc>
+    <lastmod>2023-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.repogame.cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.repogame.cloud/i18n/zh-cn/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.repogame.cloud/i18n/ja/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.repogame.cloud/i18n/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.repogame.cloud/i18n/fr/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.repogame.cloud/i18n/ru/index.html"/>
+  </url>
+  
+  <url>
+    <loc>https://www.repogame.cloud/i18n/ru/index.html</loc>
+    <lastmod>2023-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.repogame.cloud/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.repogame.cloud/i18n/zh-cn/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.repogame.cloud/i18n/ja/index.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.repogame.cloud/i18n/es/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.repogame.cloud/i18n/fr/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.repogame.cloud/i18n/ru/index.html"/>
   </url>
 </urlset> 
